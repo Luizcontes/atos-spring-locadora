@@ -10,10 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -44,13 +42,9 @@ public class Automovel {
     @Column(name = "ano", nullable = false)
     private int ano;
 
-    // @ManyToOne(fetch = FetchType.EAGER)
-    // @JoinTable(
-    //     name = "price_id",
-    //     joinColumns = @JoinColumn(name = "item_id"),
-    //     inverseJoinColumns = @JoinColumn(nullable = false)
-    // )
-    // private Price price;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "priceused", nullable = true)
+    private Priceused priceused;
 
     @Column(nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -78,10 +72,6 @@ public class Automovel {
 
     public String getPlaca() {
         return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     public String getMarca() {
@@ -136,13 +126,17 @@ public class Automovel {
         contratos.remove(contrato);
     }
 
-    // public Price getPrice() {
-    //     return price;
-    // }
+    public Priceused getPriceused() {
+        return priceused;
+    }
 
-    // public void setPrice(Price price) {
-    //     this.price = price;
-    // }
+    public void setPriceused(Priceused priceUsed) {
+        this.priceused = priceUsed;
+    }
+
+    public void removePriceused() {
+        this.priceused = null;
+    }
 
     @Override
     public String toString() {

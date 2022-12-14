@@ -1,9 +1,10 @@
 package contes.atoslocadora.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,29 +15,37 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-// @Entity
-public class Price {
-    
+@Entity
+public class Priceused {
+
     @Id
     @GeneratedValue
     private Long id;
-
+    
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private PriceType priceType = PriceType.LUXURY;
-
+    
     @NotNull
+    @Column(nullable = false)
     private Double price;
-
-    @OneToMany(mappedBy = "automovel")
-    private Set<Automovel> automoveis = new HashSet<>();
-
-    public Price() {
+    
+    @OneToMany(mappedBy = "priceused", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonIgnore
+    private List<Automovel> automoveis = new ArrayList<>();
+    
+    public Priceused() {
     }
 
-    public Price(@NotNull PriceType priceType, @NotNull Double price) {
+    public Priceused(@NotNull PriceType priceType, @NotNull Double price) {
         this.priceType = priceType;
         this.price = price;
+    }
+
+    public Priceused(PriceTable priceTable){
+        this.priceType = priceTable.getPriceType();
+        this.price = priceTable.getPrice();
     }
 
     public Long getId() {
@@ -59,13 +68,11 @@ public class Price {
         this.price = price;
     }
 
-    public Set<Automovel> getAutomoveis() {
+    public List<Automovel> getAutomoveis() {
         return automoveis;
     }
 
     public void addAutomovel(Automovel automovel) {
         automoveis.add(automovel);
     }
-
-    
 }

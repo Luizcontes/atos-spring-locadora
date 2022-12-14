@@ -28,34 +28,19 @@ public class Contrato {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id", nullable = false)
-    // @org.hibernate.annotations.Fetch(
-    //     org.hibernate.annotations.FetchMode.SELECT
-    // )
+
     private Cliente cliente;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "automovel_id", nullable = true)
-    // @org.hibernate.annotations.Fetch(
-    //     org.hibernate.annotations.FetchMode.SELECT
-    // )
+
     private Automovel automovel;
 
     private double preco;
 
     private int periodo;
 
-    private Long cpf;
-
-    private String placa;
-
     public Contrato() {
-    }
-
-    public Contrato(Long cpf, String placa, double preco, int periodo) {
-        this.cpf = cpf;
-        this.placa = placa;
-        this.preco = preco;
-        this.periodo = periodo;
     }
 
     public Long getId() {
@@ -102,17 +87,17 @@ public class Contrato {
         this.periodo = periodo;
     }
 
-    public Long getCpf() {
-        return cpf;
-    }
+    // public Long getCpf() {
+    //     return cpf;
+    // }
 
-    public String getPlaca() {
-        return placa;
-    }
+    // public String getPlaca() {
+    //     return placa;
+    // }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
+    // public void setPlaca(String placa) {
+    //     this.placa = placa;
+    // }
 
     public Long generateContratoNumber() {
         String second = String.valueOf(LocalDateTime.now().toLocalTime().toSecondOfDay());

@@ -16,6 +16,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Cliente findByEndereco(String endereco);
     List<Cliente> findByNomeContaining(String text);
 
+    List<Cliente> findByAtivo(boolean ativo);
+
     @Query("select c from Cliente c inner join fetch c.contratos where c.cpf = :cpf")
     Cliente findClienteWithContratos(@Param("cpf") Long cpf);
 }

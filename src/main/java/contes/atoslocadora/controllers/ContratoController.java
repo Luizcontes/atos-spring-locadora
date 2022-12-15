@@ -54,6 +54,7 @@ public class ContratoController {
     
     @DeleteMapping("/{contrato}")
     public ResponseEntity<?> deleteContrato(@PathVariable("contrato") Long nContrato) {
+        
         return contratoService.deleteContrato(nContrato);
     }
 }

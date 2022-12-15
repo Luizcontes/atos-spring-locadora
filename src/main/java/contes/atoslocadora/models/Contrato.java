@@ -87,18 +87,6 @@ public class Contrato {
         this.periodo = periodo;
     }
 
-    // public Long getCpf() {
-    //     return cpf;
-    // }
-
-    // public String getPlaca() {
-    //     return placa;
-    // }
-
-    // public void setPlaca(String placa) {
-    //     this.placa = placa;
-    // }
-
     public Long generateContratoNumber() {
         String second = String.valueOf(LocalDateTime.now().toLocalTime().toSecondOfDay());
         String year = String.valueOf(LocalDate.now().getYear());

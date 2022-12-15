@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import contes.atoslocadora.models.Automovel;
 import contes.atoslocadora.models.Contrato;
+import contes.atoslocadora.projections.ContratoProjection;
 
 public interface ContratoRepository extends JpaRepository<Contrato, Long> {
 

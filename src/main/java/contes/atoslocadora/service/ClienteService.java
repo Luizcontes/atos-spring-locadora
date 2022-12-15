@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import contes.atoslocadora.exception.RecordExistenteException;
 import contes.atoslocadora.exception.RecordInexistenteException;
 import contes.atoslocadora.models.Cliente;
+import contes.atoslocadora.projections.ClienteProjection;
 import contes.atoslocadora.repositories.ClienteRepository;
 
 @Component

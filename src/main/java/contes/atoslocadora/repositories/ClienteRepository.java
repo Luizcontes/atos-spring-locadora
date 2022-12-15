@@ -2,11 +2,13 @@ package contes.atoslocadora.repositories;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import contes.atoslocadora.models.Cliente;
+import contes.atoslocadora.projections.ClienteProjection;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
@@ -17,6 +19,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> findByNomeContaining(String text);
 
     List<Cliente> findByAtivo(boolean ativo);
+
+    // List<ClienteProjection.NCliente> findByAtivo(boolean ativo);
 
     @Query("select c from Cliente c inner join fetch c.contratos where c.cpf = :cpf")
     Cliente findClienteWithContratos(@Param("cpf") Long cpf);
